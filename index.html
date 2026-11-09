@@ -44,6 +44,7 @@
   .tri-texture { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='48'%3E%3Cpath d='M0 48L28 0l28 48z' fill='none' stroke='rgba(255,255,255,0.045)' stroke-width='1'/%3E%3C/svg%3E"); background-size: 56px 48px; }
   .faq summary::-webkit-details-marker { display:none; }
   .faq[open] .faq-icon { transform: rotate(45deg); }
+  @media (min-width:1024px){ .diag-panel { clip-path: polygon(0 0, 100% 0, 78% 100%, 0 100%); } }
   .hero-slide { transition: opacity 1.4s ease, transform 7s ease-out; }
   .hero-slide.is-active { transform: scale(1.06); }
   @media (prefers-reduced-motion: reduce) { .hero-slide, .spring { transition: none; } .hero-slide.is-active { transform: none; } }
@@ -94,6 +95,7 @@
     <div class="flex items-center gap-3 justify-self-end">
       <a href="#contact" class="spring hidden sm:inline-flex items-center gap-2 h-12 px-6 rounded-md bg-copper text-white font-bold shadow-copper hover:-translate-y-0.5 hover:bg-copper-dark focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-copper/30 active:translate-y-0 active:scale-[.98]">
         Request a quote
+        <span id="quote-count" class="hidden min-w-[22px] h-[22px] px-1.5 rounded-full bg-white text-copper text-[12px] font-extrabold grid place-items-center" aria-label="products in quote list">0</span>
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <button id="menu-btn" class="lg:hidden w-12 h-12 grid place-items-center rounded-md border border-mist-dark text-steel hover:bg-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper active:scale-95" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -166,6 +168,25 @@
   </div>
 </section>
 
+<!-- ============ INFO STRIP ============ -->
+<section class="relative bg-copper text-white overflow-hidden">
+  <div class="absolute inset-0" style="background: radial-gradient(50% 120% at 100% 50%, rgba(79,45,6,.45), transparent 70%);"></div>
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-6 grid sm:grid-cols-3 gap-5 sm:gap-8 text-[14px]">
+    <a href="tel:+27118453031" class="group flex items-center gap-3 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:opacity-80">
+      <span class="spring w-10 h-10 rounded-full bg-white/15 grid place-items-center shrink-0 group-hover:bg-white group-hover:text-copper"><svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
+      <span><span class="block text-white/70 text-[12px] uppercase tracking-[.12em] font-semibold">Sales line</span><span class="font-bold">+27 11 845 3031</span></span>
+    </a>
+    <a href="mailto:sales@vuladrilling.co.za" class="group flex items-center gap-3 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:opacity-80">
+      <span class="spring w-10 h-10 rounded-full bg-white/15 grid place-items-center shrink-0 group-hover:bg-white group-hover:text-copper"><svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></svg></span>
+      <span><span class="block text-white/70 text-[12px] uppercase tracking-[.12em] font-semibold">Email</span><span class="font-bold">sales@vuladrilling.co.za</span></span>
+    </a>
+    <a href="https://www.google.com/maps/search/?api=1&query=2+London+Street+Apex+Benoni" target="_blank" rel="noopener" class="group flex items-center gap-3 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white active:opacity-80">
+      <span class="spring w-10 h-10 rounded-full bg-white/15 grid place-items-center shrink-0 group-hover:bg-white group-hover:text-copper"><svg class="w-[18px] h-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-6.2-8-12a8 8 0 0 1 16 0c0 5.8-8 12-8 12z"/><circle cx="12" cy="10" r="3"/></svg></span>
+      <span><span class="block text-white/70 text-[12px] uppercase tracking-[.12em] font-semibold">Head office</span><span class="font-bold">2 London Street, Apex Industrial, Benoni</span></span>
+    </a>
+  </div>
+</section>
+
 <!-- ============ ABOUT ============ -->
 <section id="about" class="relative bg-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 py-20 sm:py-28 grid lg:grid-cols-2 gap-14 lg:gap-20 items-center">
@@ -227,61 +248,103 @@
       </div>
     </div>
 
-    <!-- Conventional -->
-    <article class="mt-14 rounded-2xl overflow-hidden bg-white shadow-lift grid lg:grid-cols-[0.9fr_1.6fr]">
-      <div class="relative min-h-[280px] lg:min-h-full overflow-hidden">
-        <img src="brand_assets/miner-drilling.jpg" alt="Miner operating a hand-held rock drill underground" class="absolute inset-0 w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent"></div>
+    <!-- Range banners (double as filters) -->
+    <div class="mt-14 grid md:grid-cols-2 gap-5">
+      <button type="button" data-filter="conventional" class="range-btn group relative text-left rounded-2xl overflow-hidden min-h-[220px] shadow-lift spring hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-copper/40 active:translate-y-0 active:scale-[.99]">
+        <img src="brand_assets/miner-drilling.jpg" alt="Miner operating a hand-held rock drill underground" class="spring absolute inset-0 w-full h-full object-cover group-hover:scale-[1.04]" />
+        <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/10"></div>
         <div class="absolute inset-0 bg-copper-deep/30 mix-blend-multiply"></div>
-        <div class="absolute bottom-0 left-0 p-7">
-          <span class="inline-block rounded bg-copper px-2.5 py-1 text-[11px] font-bold uppercase tracking-[.15em] text-white">Range 01</span>
-          <h3 class="font-display font-extrabold uppercase text-white text-[38px] mt-3">Conventional mining</h3>
-          <p class="text-white/75 text-[14px] max-w-[300px]">Percussion drilling consumables for hand-held rock drills.</p>
+        <div class="relative p-7 flex flex-col justify-end h-full min-h-[220px]">
+          <span class="inline-block w-fit rounded bg-copper px-2.5 py-1 text-[11px] font-bold uppercase tracking-[.15em] text-white">Range 01</span>
+          <span class="font-display font-extrabold uppercase text-white text-[36px] mt-3 leading-none">Conventional mining</span>
+          <span class="text-white/75 text-[14px] mt-2">Tapered consumables for hand-held rock drills &rarr;</span>
         </div>
-      </div>
-      <div class="p-5 sm:p-8 grid sm:grid-cols-3 gap-4 items-stretch">
-        <div class="group rounded-xl border border-mist-dark overflow-hidden spring hover:-translate-y-1 hover:border-copper/40">
-          <div class="bg-white aspect-[16/9] sm:aspect-[4/3] overflow-hidden"><img src="brand_assets/prod-tapered-bits.png" alt="Range of VULA tapered button and chisel drill bits" class="spring w-full h-full object-contain group-hover:scale-[1.06]" /></div>
-          <div class="p-4 border-t border-mist-dark"><h4 class="font-display font-bold uppercase text-[20px]">Tapered drill bits</h4><p class="text-[13px] text-ink/60 mt-1">Button &amp; chisel bits</p></div>
+      </button>
+      <button type="button" data-filter="mechanised" class="range-btn group relative text-left rounded-2xl overflow-hidden min-h-[220px] shadow-lift spring hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-copper/40 active:translate-y-0 active:scale-[.99]">
+        <img src="brand_assets/hero-underground-rig.jpg" alt="Mechanised drilling rig in an underground mine" class="spring absolute inset-0 w-full h-full object-cover group-hover:scale-[1.04]" />
+        <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/10"></div>
+        <div class="absolute inset-0 bg-copper-deep/30 mix-blend-multiply"></div>
+        <div class="relative p-7 flex flex-col justify-end h-full min-h-[220px]">
+          <span class="inline-block w-fit rounded bg-copper px-2.5 py-1 text-[11px] font-bold uppercase tracking-[.15em] text-white">Range 02</span>
+          <span class="font-display font-extrabold uppercase text-white text-[36px] mt-3 leading-none">Mechanised mining</span>
+          <span class="text-white/75 text-[14px] mt-2">Threaded consumables for drill rigs and jumbos &rarr;</span>
         </div>
-        <div class="group rounded-xl border border-mist-dark overflow-hidden spring hover:-translate-y-1 hover:border-copper/40">
-          <div class="bg-white aspect-[16/9] sm:aspect-[4/3] overflow-hidden"><img src="brand_assets/prod-tapered-rod.png" alt="VULA tapered drill rod" class="spring w-full h-full object-contain group-hover:scale-[1.06]" /></div>
-          <div class="p-4 border-t border-mist-dark"><h4 class="font-display font-bold uppercase text-[20px]">Tapered drill rods</h4><p class="text-[13px] text-ink/60 mt-1">22 &amp; 25 Hex taper steel</p></div>
-        </div>
-        <div class="group rounded-xl border border-mist-dark overflow-hidden spring hover:-translate-y-1 hover:border-copper/40">
-          <div class="bg-white aspect-[16/9] sm:aspect-[4/3] overflow-hidden"><img src="brand_assets/prod-knockoff.png" alt="VULA knock-off tool" class="spring w-full h-full object-contain group-hover:scale-[1.06]" /></div>
-          <div class="p-4 border-t border-mist-dark"><h4 class="font-display font-bold uppercase text-[20px]">Knock-off tools</h4><p class="text-[13px] text-ink/60 mt-1">Bit removal tools</p></div>
-        </div>
-      </div>
-    </article>
+      </button>
+    </div>
 
-    <!-- Mechanised -->
-    <article class="mt-6 rounded-2xl overflow-hidden bg-white shadow-lift grid lg:grid-cols-[1.6fr_0.9fr]">
-      <div class="p-5 sm:p-8 grid sm:grid-cols-3 gap-4 items-stretch order-2 lg:order-1">
-        <div class="group rounded-xl border border-mist-dark overflow-hidden spring hover:-translate-y-1 hover:border-copper/40">
-          <div class="bg-white aspect-[16/9] sm:aspect-[4/3] overflow-hidden"><img src="brand_assets/prod-threaded-bits.png" alt="Range of VULA threaded button drill bits" class="spring w-full h-full object-contain group-hover:scale-[1.06]" /></div>
-          <div class="p-4 border-t border-mist-dark"><h4 class="font-display font-bold uppercase text-[20px]">Threaded drill bits</h4><p class="text-[13px] text-ink/60 mt-1">Button bits for rigs</p></div>
+    <!-- Filter tabs -->
+    <div class="mt-14 flex flex-wrap items-center justify-between gap-4">
+      <div id="product-tabs" class="grid grid-cols-3 w-full sm:w-auto sm:inline-flex gap-1.5 rounded-full bg-white p-1.5 shadow-lift" role="tablist" aria-label="Filter products">
+        <button type="button" data-filter="all" role="tab" aria-selected="true" class="tab-btn spring h-10 px-3 sm:px-5 rounded-full text-[13px] sm:text-[14px] whitespace-nowrap font-semibold bg-steel text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper active:scale-95">All products</button>
+        <button type="button" data-filter="conventional" role="tab" aria-selected="false" class="tab-btn spring h-10 px-3 sm:px-5 rounded-full text-[13px] sm:text-[14px] whitespace-nowrap font-semibold text-steel hover:bg-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper active:scale-95">Conventional</button>
+        <button type="button" data-filter="mechanised" role="tab" aria-selected="false" class="tab-btn spring h-10 px-3 sm:px-5 rounded-full text-[13px] sm:text-[14px] whitespace-nowrap font-semibold text-steel hover:bg-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper active:scale-95">Mechanised</button>
+      </div>
+      <p class="text-[14px] text-ink/60">Add products to your quote list &mdash; we'll include them in your request.</p>
+    </div>
+
+    <!-- Product grid -->
+    <div id="product-grid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
+      <div class="product-tile group" data-range="conventional">
+        <div class="relative rounded-xl bg-white aspect-[16/10] overflow-hidden ring-1 ring-mist-dark shadow-lift spring group-hover:-translate-y-1">
+          <img src="brand_assets/prod-tapered-bits.png" alt="Range of VULA tapered button and chisel drill bits" class="spring w-full h-full object-contain p-3 group-hover:scale-[1.05]" />
+          <span class="absolute top-3 left-3 rounded bg-steel px-2 py-0.5 text-[11px] font-bold uppercase tracking-[.12em] text-white">Conventional</span>
         </div>
-        <div class="group rounded-xl border border-mist-dark overflow-hidden spring hover:-translate-y-1 hover:border-copper/40">
-          <div class="bg-white aspect-[16/9] sm:aspect-[4/3] overflow-hidden"><img src="brand_assets/prod-threaded-rod.png" alt="VULA threaded drill rod" class="spring w-full h-full object-contain group-hover:scale-[1.06]" /></div>
-          <div class="p-4 border-t border-mist-dark"><h4 class="font-display font-bold uppercase text-[20px]">Threaded drill rods</h4><p class="text-[13px] text-ink/60 mt-1">Drifter &amp; extension rods</p></div>
-        </div>
-        <div class="group rounded-xl border border-mist-dark overflow-hidden spring hover:-translate-y-1 hover:border-copper/40">
-          <div class="bg-white aspect-[16/9] sm:aspect-[4/3] overflow-hidden"><img src="brand_assets/prod-couplings.png" alt="VULA threaded couplings and shank adaptors" class="spring w-full h-full object-contain group-hover:scale-[1.06]" /></div>
-          <div class="p-4 border-t border-mist-dark"><h4 class="font-display font-bold uppercase text-[20px]">Couplings &amp; adaptors</h4><p class="text-[13px] text-ink/60 mt-1">Threaded couplings, shanks</p></div>
+        <div class="mt-4 flex items-start justify-between gap-3">
+          <div><h3 class="font-display font-bold uppercase text-[24px] leading-tight">Tapered drill bits</h3><p class="text-[14px] text-ink/60">Button &amp; chisel bits</p></div>
+          <button type="button" class="add-quote spring shrink-0 h-10 px-4 rounded-full border border-copper/40 text-copper text-[13px] font-bold hover:bg-copper hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper active:scale-95" data-product="Tapered drill bits" aria-pressed="false">+ Add to quote</button>
         </div>
       </div>
-      <div class="relative min-h-[280px] lg:min-h-full overflow-hidden order-1 lg:order-2">
-        <img src="brand_assets/hero-underground-rig.jpg" alt="Mechanised drilling rig in an underground mine" class="absolute inset-0 w-full h-full object-cover" />
-        <div class="absolute inset-0 bg-gradient-to-t from-black/75 via-black/30 to-transparent"></div>
-        <div class="absolute inset-0 bg-copper-deep/30 mix-blend-multiply"></div>
-        <div class="absolute bottom-0 left-0 p-7">
-          <span class="inline-block rounded bg-copper px-2.5 py-1 text-[11px] font-bold uppercase tracking-[.15em] text-white">Range 02</span>
-          <h3 class="font-display font-extrabold uppercase text-white text-[38px] mt-3">Mechanised mining</h3>
-          <p class="text-white/75 text-[14px] max-w-[300px]">Threaded consumables for drill rigs and jumbos.</p>
+      <div class="product-tile group" data-range="conventional">
+        <div class="relative rounded-xl bg-white aspect-[16/10] overflow-hidden ring-1 ring-mist-dark shadow-lift spring group-hover:-translate-y-1">
+          <img src="brand_assets/prod-tapered-rod.png" alt="VULA tapered drill rod" class="spring w-full h-full object-contain p-3 group-hover:scale-[1.05]" />
+          <span class="absolute top-3 left-3 rounded bg-steel px-2 py-0.5 text-[11px] font-bold uppercase tracking-[.12em] text-white">Conventional</span>
+        </div>
+        <div class="mt-4 flex items-start justify-between gap-3">
+          <div><h3 class="font-display font-bold uppercase text-[24px] leading-tight">Tapered drill rods</h3><p class="text-[14px] text-ink/60">22 &amp; 25 Hex taper drill steel</p></div>
+          <button type="button" class="add-quote spring shrink-0 h-10 px-4 rounded-full border border-copper/40 text-copper text-[13px] font-bold hover:bg-copper hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper active:scale-95" data-product="Tapered drill rods" aria-pressed="false">+ Add to quote</button>
         </div>
       </div>
-    </article>
+      <div class="product-tile group" data-range="conventional">
+        <div class="relative rounded-xl bg-white aspect-[16/10] overflow-hidden ring-1 ring-mist-dark shadow-lift spring group-hover:-translate-y-1">
+          <img src="brand_assets/prod-knockoff.png" alt="VULA knock-off tool" class="spring w-full h-full object-contain p-3 group-hover:scale-[1.05]" />
+          <span class="absolute top-3 left-3 rounded bg-steel px-2 py-0.5 text-[11px] font-bold uppercase tracking-[.12em] text-white">Conventional</span>
+        </div>
+        <div class="mt-4 flex items-start justify-between gap-3">
+          <div><h3 class="font-display font-bold uppercase text-[24px] leading-tight">Knock-off tools</h3><p class="text-[14px] text-ink/60">For removing tapered bits</p></div>
+          <button type="button" class="add-quote spring shrink-0 h-10 px-4 rounded-full border border-copper/40 text-copper text-[13px] font-bold hover:bg-copper hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper active:scale-95" data-product="Knock-off tools" aria-pressed="false">+ Add to quote</button>
+        </div>
+      </div>
+      <div class="product-tile group" data-range="mechanised">
+        <div class="relative rounded-xl bg-white aspect-[16/10] overflow-hidden ring-1 ring-mist-dark shadow-lift spring group-hover:-translate-y-1">
+          <img src="brand_assets/prod-threaded-bits.png" alt="Range of VULA threaded button drill bits" class="spring w-full h-full object-contain p-3 group-hover:scale-[1.05]" />
+          <span class="absolute top-3 left-3 rounded bg-copper px-2 py-0.5 text-[11px] font-bold uppercase tracking-[.12em] text-white">Mechanised</span>
+        </div>
+        <div class="mt-4 flex items-start justify-between gap-3">
+          <div><h3 class="font-display font-bold uppercase text-[24px] leading-tight">Threaded drill bits</h3><p class="text-[14px] text-ink/60">Button bits for rigs</p></div>
+          <button type="button" class="add-quote spring shrink-0 h-10 px-4 rounded-full border border-copper/40 text-copper text-[13px] font-bold hover:bg-copper hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper active:scale-95" data-product="Threaded drill bits" aria-pressed="false">+ Add to quote</button>
+        </div>
+      </div>
+      <div class="product-tile group" data-range="mechanised">
+        <div class="relative rounded-xl bg-white aspect-[16/10] overflow-hidden ring-1 ring-mist-dark shadow-lift spring group-hover:-translate-y-1">
+          <img src="brand_assets/prod-threaded-rod.png" alt="VULA threaded drill rod" class="spring w-full h-full object-contain p-3 group-hover:scale-[1.05]" />
+          <span class="absolute top-3 left-3 rounded bg-copper px-2 py-0.5 text-[11px] font-bold uppercase tracking-[.12em] text-white">Mechanised</span>
+        </div>
+        <div class="mt-4 flex items-start justify-between gap-3">
+          <div><h3 class="font-display font-bold uppercase text-[24px] leading-tight">Threaded drill rods</h3><p class="text-[14px] text-ink/60">Drifter &amp; extension rods</p></div>
+          <button type="button" class="add-quote spring shrink-0 h-10 px-4 rounded-full border border-copper/40 text-copper text-[13px] font-bold hover:bg-copper hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper active:scale-95" data-product="Threaded drill rods" aria-pressed="false">+ Add to quote</button>
+        </div>
+      </div>
+      <div class="product-tile group" data-range="mechanised">
+        <div class="relative rounded-xl bg-white aspect-[16/10] overflow-hidden ring-1 ring-mist-dark shadow-lift spring group-hover:-translate-y-1">
+          <img src="brand_assets/prod-couplings.png" alt="VULA threaded couplings and shank adaptors" class="spring w-full h-full object-contain p-3 group-hover:scale-[1.05]" />
+          <span class="absolute top-3 left-3 rounded bg-copper px-2 py-0.5 text-[11px] font-bold uppercase tracking-[.12em] text-white">Mechanised</span>
+        </div>
+        <div class="mt-4 flex items-start justify-between gap-3">
+          <div><h3 class="font-display font-bold uppercase text-[24px] leading-tight">Couplings &amp; adaptors</h3><p class="text-[14px] text-ink/60">Threaded couplings, shanks</p></div>
+          <button type="button" class="add-quote spring shrink-0 h-10 px-4 rounded-full border border-copper/40 text-copper text-[13px] font-bold hover:bg-copper hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper active:scale-95" data-product="Couplings &amp; adaptors" aria-pressed="false">+ Add to quote</button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -347,34 +410,50 @@
   </div>
 </section>
 
-<!-- ============ PROCESS ============ -->
-<section class="relative bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-20 sm:py-28">
-    <div class="max-w-[640px]">
-      <p class="text-[13px] font-bold uppercase tracking-[.2em] text-copper">How we work</p>
-      <h2 class="font-display font-extrabold uppercase text-[42px] sm:text-[56px] mt-3">From enquiry to the rock face</h2>
+<!-- ============ HOW TO ORDER ============ -->
+<section id="how-to-order" class="relative bg-steel-deep text-white overflow-hidden">
+  <div class="diag-panel relative lg:absolute lg:inset-y-0 lg:left-0 lg:w-[46%] h-[300px] sm:h-[380px] lg:h-auto overflow-hidden bg-copper">
+    <img src="brand_assets/hero-tunnel-face.jpg" alt="Drilling crew working at an underground tunnel face" class="absolute inset-0 w-full h-full object-cover object-[60%_center]" />
+    <div class="absolute inset-0 bg-copper mix-blend-multiply opacity-60"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+    <div class="absolute left-6 sm:left-10 bottom-6 sm:bottom-10 rounded-lg bg-white text-steel shadow-float px-5 py-4 flex items-center gap-4">
+      <span class="w-11 h-11 rounded-full bg-copper text-white grid place-items-center"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1zM16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></span>
+      <span class="text-[13px] font-semibold leading-snug text-steel/75">Dispatched from<br/><span class="text-steel font-bold text-[15px]">Benoni, Gauteng</span></span>
     </div>
-    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="rounded-xl bg-copper text-white p-7 shadow-copper">
-        <div class="font-display font-extrabold text-[48px] leading-none text-white/40">01</div>
-        <h3 class="font-display font-extrabold uppercase text-[24px] mt-4">Tell us your application</h3>
-        <p class="mt-2 text-[14px] text-white/85">Conventional or mechanised, the equipment you run and the ground you drill.</p>
-      </div>
-      <div class="rounded-xl bg-steel text-white p-7 shadow-lift">
-        <div class="font-display font-extrabold text-[48px] leading-none text-white/30">02</div>
-        <h3 class="font-display font-extrabold uppercase text-[24px] mt-4">We match the range</h3>
-        <p class="mt-2 text-[14px] text-white/75">The right bits, rods, shanks and couplings from the VULA range for the job.</p>
-      </div>
-      <div class="rounded-xl bg-steel-dark text-white p-7 shadow-lift">
-        <div class="font-display font-extrabold text-[48px] leading-none text-white/30">03</div>
-        <h3 class="font-display font-extrabold uppercase text-[24px] mt-4">Quote &amp; supply</h3>
-        <p class="mt-2 text-[14px] text-white/75">An economical quote, then fast dispatch from our central Benoni base.</p>
-      </div>
-      <div class="rounded-xl bg-copper-dark text-white p-7 shadow-copper">
-        <div class="font-display font-extrabold text-[48px] leading-none text-white/40">04</div>
-        <h3 class="font-display font-extrabold uppercase text-[24px] mt-4">Technical support</h3>
-        <p class="mt-2 text-[14px] text-white/85">Ongoing product and technical support to keep your crews drilling.</p>
-      </div>
+  </div>
+  <div class="absolute inset-0 tri-texture pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-24 lg:py-28 grid lg:grid-cols-[46%_1fr]">
+    <div class="hidden lg:block"></div>
+    <div class="lg:pl-16">
+      <p class="text-[13px] font-bold uppercase tracking-[.2em] text-copper-light">Simple ordering</p>
+      <h2 class="font-display font-extrabold uppercase text-[44px] sm:text-[60px] mt-3">How to order</h2>
+      <ol class="mt-10 grid sm:grid-cols-2 gap-x-10 gap-y-10">
+        <li>
+          <span class="font-display font-bold uppercase tracking-[.08em] text-copper-light text-[22px]">Step 1</span>
+          <h3 class="font-bold text-[17px] mt-2">Browse the range</h3>
+          <p class="mt-1.5 text-[15px] text-white/65">Filter by conventional or mechanised mining to find the consumables you need.</p>
+        </li>
+        <li>
+          <span class="font-display font-bold uppercase tracking-[.08em] text-copper-light text-[22px]">Step 2</span>
+          <h3 class="font-bold text-[17px] mt-2">Build your quote list</h3>
+          <p class="mt-1.5 text-[15px] text-white/65">Add products to your list, then send a quote request with sizes and quantities.</p>
+        </li>
+        <li>
+          <span class="font-display font-bold uppercase tracking-[.08em] text-copper-light text-[22px]">Step 3</span>
+          <h3 class="font-bold text-[17px] mt-2">We confirm stock &amp; pricing</h3>
+          <p class="mt-1.5 text-[15px] text-white/65">Our sales team confirms availability, pricing and delivery, with technical advice if you need it.</p>
+        </li>
+        <li>
+          <span class="font-display font-bold uppercase tracking-[.08em] text-copper-light text-[22px]">Step 4</span>
+          <h3 class="font-bold text-[17px] mt-2">Fast dispatch</h3>
+          <p class="mt-1.5 text-[15px] text-white/65">Orders go out from our central Benoni base, close to major transport routes.</p>
+        </li>
+      </ol>
+      <a href="#products" class="spring mt-12 inline-flex items-center gap-2 h-12 px-6 rounded-md bg-copper text-white font-bold shadow-copper hover:-translate-y-0.5 hover:bg-copper-dark focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-copper-light/40 active:translate-y-0 active:scale-[.98]">
+        Start your quote list
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -488,6 +567,10 @@
             <option>Both / not sure</option>
           </select>
         </label>
+        <div id="quote-list" class="hidden sm:col-span-2 rounded-lg border border-copper/25 bg-copper-soft p-4">
+          <p class="text-[12px] font-bold uppercase tracking-[.14em] text-copper-dark">Products on your quote</p>
+          <div id="quote-chips" class="mt-2.5 flex flex-wrap gap-2"></div>
+        </div>
         <label class="grid gap-1.5 text-[14px] font-semibold sm:col-span-2">What do you need?
           <textarea name="message" rows="4" placeholder="Products, sizes, quantities, delivery site…" class="rounded-md border border-mist-dark bg-mist px-4 py-3 font-normal outline-none hover:border-steel/30 focus-visible:border-copper focus-visible:ring-4 focus-visible:ring-copper/15"></textarea>
         </label>
@@ -586,6 +669,61 @@
   heroDots.forEach(d => d.addEventListener('click', () => showHeroSlide(Number(d.dataset.i))));
   setInterval(() => showHeroSlide((heroIndex + 1) % heroSlides.length), 6000);
 
+  const tiles = document.querySelectorAll('.product-tile');
+  const tabs = document.querySelectorAll('.tab-btn');
+  function applyFilter(range) {
+    tiles.forEach(t => t.classList.toggle('hidden', range !== 'all' && t.dataset.range !== range));
+    tabs.forEach(b => {
+      const on = b.dataset.filter === range;
+      b.classList.toggle('bg-steel', on);
+      b.classList.toggle('text-white', on);
+      b.classList.toggle('text-steel', !on);
+      b.classList.toggle('hover:bg-mist', !on);
+      b.setAttribute('aria-selected', on);
+    });
+  }
+  tabs.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter)));
+  document.querySelectorAll('.range-btn').forEach(b => b.addEventListener('click', () => {
+    applyFilter(b.dataset.filter);
+    document.getElementById('product-tabs').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }));
+
+  const quote = new Set();
+  const quoteCount = document.getElementById('quote-count');
+  const quoteList = document.getElementById('quote-list');
+  const quoteChips = document.getElementById('quote-chips');
+  function renderQuote() {
+    quoteCount.textContent = quote.size;
+    quoteCount.classList.toggle('hidden', quote.size === 0);
+    quoteList.classList.toggle('hidden', quote.size === 0);
+    quoteChips.replaceChildren(...[...quote].map(name => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'spring inline-flex items-center gap-1.5 h-8 pl-3 pr-2 rounded-full bg-white text-[13px] font-semibold text-steel ring-1 ring-copper/30 hover:ring-copper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-copper active:scale-95';
+      chip.setAttribute('aria-label', 'Remove ' + name + ' from quote');
+      chip.textContent = name + ' ';
+      const x = document.createElement('span');
+      x.className = 'text-copper text-[16px] leading-none';
+      x.textContent = '×';
+      chip.append(x);
+      chip.addEventListener('click', () => { quote.delete(name); renderQuote(); });
+      return chip;
+    }));
+    document.querySelectorAll('.add-quote').forEach(b => {
+      const on = quote.has(b.dataset.product);
+      b.textContent = on ? '✓ Added' : '+ Add to quote';
+      b.setAttribute('aria-pressed', on);
+      b.classList.toggle('bg-copper', on);
+      b.classList.toggle('text-white', on);
+      b.classList.toggle('text-copper', !on);
+    });
+  }
+  document.querySelectorAll('.add-quote').forEach(b => b.addEventListener('click', () => {
+    const name = b.dataset.product;
+    quote.has(name) ? quote.delete(name) : quote.add(name);
+    renderQuote();
+  }));
+
   document.getElementById('quote-form').addEventListener('submit', e => {
     e.preventDefault();
     const f = e.target;
@@ -597,6 +735,7 @@
       f.company.value.trim() && 'Company: ' + f.company.value.trim(),
       'Contact number: ' + f.phone.value.trim(),
       'Product range: ' + f.range.value,
+      quote.size && 'Products: ' + [...quote].join(', '),
       f.message.value.trim() && '\n' + f.message.value.trim(),
     ].filter(Boolean);
     const subject = 'Quote request' + (f.company.value.trim() ? ' – ' + f.company.value.trim() : '');
